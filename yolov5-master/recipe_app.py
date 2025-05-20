@@ -308,6 +308,15 @@ for ingr in ADDITIONAL_INGREDIENTS:
 
 @st.cache_resource
 def load_model():
+    # Patch for loading Windows-trained PyTorch checkpoints on Linux (monkey-patch WindowsPath)
+    import sys
+    import torch
+    import pathlib
+    if sys.platform != "win32":
+        try:
+            pathlib.WindowsPath = pathlib.PosixPath
+        except AttributeError:
+            pass
     # Update the path to your trained weights if needed
     return torch.hub.load('ultralytics/yolov5', 'custom', path='runs/train/exp16/weights/best.pt', force_reload=True)
 
