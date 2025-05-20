@@ -1,3 +1,11 @@
+import sys
+if sys.platform != "win32":
+    import pathlib
+    try:
+        pathlib.WindowsPath = pathlib.PosixPath
+    except Exception:
+        pass
+
 import streamlit as st
 import torch
 from PIL import Image, ImageDraw, ImageFont
