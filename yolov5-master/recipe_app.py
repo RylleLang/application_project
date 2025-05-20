@@ -3,7 +3,6 @@ import torch
 from PIL import Image, ImageDraw, ImageFont
 import os
 import matplotlib.pyplot as plt
-from inference_sdk import InferenceHTTPClient
 
 # --- Streamlit page config and custom CSS for design ---
 st.set_page_config(page_title="Ingredient Detector & Recipe Suggester", page_icon="🍳", layout="centered")
