@@ -325,7 +325,7 @@ def load_model():
         except Exception:
             pass
     import torch
-    # Use the correct path to your trained weights
+    # Use the correct path to your trained weights (relative to workspace root)
     return torch.hub.load('ultralytics/yolov5', 'custom', path='/workspaces/application_project/yolov5-master/runs/train/exp16/weights/best.pt', force_reload=True)
 
 def normalize_ingredient(name):
