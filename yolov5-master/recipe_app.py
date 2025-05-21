@@ -318,15 +318,15 @@ for ingr in ADDITIONAL_INGREDIENTS:
 def load_model():
     # Patch for loading Windows-trained PyTorch checkpoints on Linux (monkey-patch WindowsPath)
     import sys
-    import torch
-    import pathlib
     if sys.platform != "win32":
+        import pathlib
         try:
             pathlib.WindowsPath = pathlib.PosixPath
-        except AttributeError:
+        except Exception:
             pass
-    # Update the path to your trained weights if needed
-    return torch.hub.load('ultralytics/yolov5', 'custom', path='runs/train/exp16/weights/best.pt', force_reload=True)
+    import torch
+    # Use the correct path to your trained weights
+    return torch.hub.load('ultralytics/yolov5', 'custom', path='/workspaces/application_project/yolov5-master/runs/train/exp16/weights/best.pt', force_reload=True)
 
 def normalize_ingredient(name):
     # Lowercase, replace underscores with spaces, and handle plurals
